@@ -102,3 +102,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Código do Bruno
+parse_xml_tchelo.py
