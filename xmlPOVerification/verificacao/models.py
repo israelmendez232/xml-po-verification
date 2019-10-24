@@ -1,9 +1,11 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
-class Verificação():
-    xml = models.FileField('Insira aqui o XML:', upload_to='XMLs', blank=True)    
-    po = models.FileField('Insira aqui a Ordem de COmpra:', upload_to='POs', blank=True)    
+class Verificação(models.Model):
+    datetime =  datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+    xml = models.FileField('XML:', upload_to='XMLs', blank=True)    
+    po = models.FileField('Ordem de Compra:', upload_to='POs', blank=True)   
     def __str__(self):        
-        return self.titulo
-        
+        return self.datetime
