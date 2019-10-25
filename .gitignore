@@ -105,3 +105,7 @@ venv.bak/
 
 # Código do Bruno
 parse_xml_tchelo.py
+
+# Retirando as notas do Git. Para evitar dados sensíveis em um repositório público:
+Pedidos e Notas
+.vscode
