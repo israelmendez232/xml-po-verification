@@ -7,4 +7,12 @@ dictadasd = [
 ]
 
 for area in dictadasd:
-    print(area[1])
+
+    case = {
+        "Código do Fornecedor": 1,
+        "Quantidade": 2,
+        "Valor Unitário do Produto": 3,
+        "Valor Unitário do Saldo": 4
+    }
+
+    print(case[area[0]])

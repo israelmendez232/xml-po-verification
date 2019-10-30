@@ -57,14 +57,14 @@ def verification(po, xml, CNPJ): # Etapas da Verificação:
     else: 
         Alert(True, "CNPJ", CNPJ)
     
-    dict = [
-        ["Código do Fornecedor", row[1][0], "Cod. Fornecedor"],
-        ["Quantidade", row[1][7], "Qt.Saldo"],
-        ["Valor Unitário do Produto", row[1][8], "Vl.Unit.Ped."],
-        ["Valor Unitário do Saldo", row[1][5], "Vl.Saldo"]
+    areas = [
+        ["Código do Fornecedor", "Cod. Fornecedor"],
+        ["Quantidade", "Qt.Saldo"],
+        ["Valor Unitário do Produto", "Vl.Unit.Ped."],
+        ["Valor Unitário do Saldo", "Vl.Saldo"]
     ]
     
-    for area in dict:
+    for area in areas:
         for row in xml.iterrows():
             # 2. EAN
             EAN = row[1][4]
@@ -74,59 +74,19 @@ def verification(po, xml, CNPJ): # Etapas da Verificação:
             except: 
                 Alert(False, "EAN", EAN)
 
-            # area = area[0]
-            # try: 
-            #     valorNota = float(area[1])
-            #     valorXML = float(linha[area[2]].values)
-            # 
-            #     if valorNota != valorXML:
-            #         detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
-            # 
-            # except:
-            #     Alert(False, area, EAN)
-
-
-            # 3. Código do Fornecedor
-            # area = "Código do Fornecedor"
-            # try: 
-            #     valorNota = float(row[1][0])
-            #     valorXML = float(linha['Cod. Fornecedor'].values)
-            # 
-            #     if valorNota != valorXML:
-            #         detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
-            # 
-            # except:
-            #     Alert(False, area, EAN)
-
-            # 4. Quantidade
-
-            area = "Quantidade"
+            area = area[0]
             try: 
-                valorNota = float(row[1][7])
-                valorXML = float(linha['Qt.Saldo'].values)
+                valorNota = float(area[1])
 
-                if valorNota != valorXML:
-                    detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
-            except Exception as e: 
-                print(e)
+                case = {
+                    "Código do Fornecedor": row[1][0],
+                    "Quantidade": row[1][7],
+                    "Valor Unitário do Produto": row[1][8],
+                    "Valor Unitário do Saldo": row[1][5]
+                }
 
-            # 4. Valor Unitário do Produto
-            area = "Valor Unitário do Produto"
-            try: 
-                valorNota = float(row[1][8])
-                valorXML = float(linha['Vl.Unit.Ped.'].values)
-
-                if valorNota != valorXML:
-                    detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
-            except Exception as e: 
-                print(e)
-
-            # 5. Valor Total do Saldo
-            area = "Valor Unitário do Saldo"
-            try: 
-                valorNota = float(row[1][5])
-                valorXML = float(linha['Vl.Saldo'].values)
-
+                valorXML = float(linha[case[area[0]]].values)
+            
                 if valorNota != valorXML:
                     detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
             except Exception as e: 
