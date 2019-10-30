@@ -53,27 +53,101 @@ def prettyXML(uglyXML):
 def verification(po, xml, CNPJ): # Etapas da Verificação:
     # 1. CNPJ
     if CNPJ != po.iloc[0][0]:
-        Alert("CNPJ", CNPJ)
+        Alert(False, "CNPJ", CNPJ)
+    else: 
+        Alert(True, "CNPJ", CNPJ)
+    
+    dict = [
+        ["Código do Fornecedor", row[1][0], "Cod. Fornecedor"],
+        ["Quantidade", row[1][7], "Qt.Saldo"],
+        ["Valor Unitário do Produto", row[1][8], "Vl.Unit.Ped."],
+        ["Valor Unitário do Saldo", row[1][5], "Vl.Saldo"]
+    ]
+    
+    for area in dict:
+        for row in xml.iterrows():
+            # 2. EAN
+            EAN = row[1][4]
 
-    for row in xml.iterrows():
-        # 2. EAN
-        EAN = row[1][1]
+            try: 
+                linha = po.loc[po['Ean'] == int(EAN)]
+            except: 
+                Alert(False, "EAN", EAN)
 
-        try: 
-            linha = po.loc[po['Ean'] == 7896447104592]
-            print(linha)
-        except: 
-            Alert("EAN", EAN)
-            
-        # 3. Quantidade
+            # area = area[0]
+            # try: 
+            #     valorNota = float(area[1])
+            #     valorXML = float(linha[area[2]].values)
+            # 
+            #     if valorNota != valorXML:
+            #         detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
+            # 
+            # except:
+            #     Alert(False, area, EAN)
 
-        # 4. Valor Unitário do product
 
-        # 5. Valor Total do Saldo
+            # 3. Código do Fornecedor
+            # area = "Código do Fornecedor"
+            # try: 
+            #     valorNota = float(row[1][0])
+            #     valorXML = float(linha['Cod. Fornecedor'].values)
+            # 
+            #     if valorNota != valorXML:
+            #         detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
+            # 
+            # except:
+            #     Alert(False, area, EAN)
+
+            # 4. Quantidade
+
+            area = "Quantidade"
+            try: 
+                valorNota = float(row[1][7])
+                valorXML = float(linha['Qt.Saldo'].values)
+
+                if valorNota != valorXML:
+                    detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
+            except Exception as e: 
+                print(e)
+
+            # 4. Valor Unitário do Produto
+            area = "Valor Unitário do Produto"
+            try: 
+                valorNota = float(row[1][8])
+                valorXML = float(linha['Vl.Unit.Ped.'].values)
+
+                if valorNota != valorXML:
+                    detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
+            except Exception as e: 
+                print(e)
+
+            # 5. Valor Total do Saldo
+            area = "Valor Unitário do Saldo"
+            try: 
+                valorNota = float(row[1][5])
+                valorXML = float(linha['Vl.Saldo'].values)
+
+                if valorNota != valorXML:
+                    detailedAlert(area, row[1][12], EAN, valorNota, valorXML)
+            except Exception as e: 
+                print(e)
+
+        Alert(True, "EAN", 1)
+        Alert(True, "Quantidade", 1)
+        Alert(True, "Valor Unitário do Produto", 1)
+        Alert(True, "Valor Total do Produto", 1)
 
 
-def Alert(element, value):
-    print("{} apresentou problema: {}".format(element, value))
+def Alert(success, element, value):
+    if success:
+        print("{} seguiu com sucesso: ✓ ".format(element))
+    else:
+        print("{} apresentou problema: {}".format(element, value))
+
+def detailedAlert(element, product, ean, poValue, xmlValue):
+    print("\n{} está divergente.".format(element))
+    print("Produto: {}. EAN: {}. (Nota) {} ≠ {} (XML) \n".format(product, ean, poValue, xmlValue))
+
 
 def main(uglyXML, uglyPO):
     po = prettyPO(uglyPO)
