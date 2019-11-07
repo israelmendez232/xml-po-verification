@@ -1,0 +1,20 @@
+body {
+    font-family: Arial,sans-serif;
+}
+
+#header {
+    background-color: #5a1e82;
+}
+
+div.breadcrumbs {
+    background-color: #8539b8;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background-color: #5a1e82;
+    background: #5a1e82;
+}
+
+a:link, a:visited {
+    color: #4c4c4c;
+}
