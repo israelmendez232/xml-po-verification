@@ -9,11 +9,12 @@
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name">
-    <a href="{% url 'admin:index' %}">
-        <img src="{% static 'Logo2.png' %}" height="40px" />
-    </a>
-</h1>
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">
+            <img src="{% static 'Logo2.png' %}" height="40px" />
+        </a>
+        Supply e XML
+    </h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}

@@ -18,7 +18,7 @@ div.breadcrumbs {
 a:link, a:visited {
     color: #4c4c4c;
 }
-
+/* 
 input[name="_continue"] {
     display: none;
 }
@@ -29,4 +29,4 @@ input[name="_addanother"] {
 
 input[name="_save"] {
     display: none;
-}
+} */
