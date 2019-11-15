@@ -3,7 +3,7 @@
 {% block submit_buttons_bottom %}
     {{ block.super }}
     <div class="submit-row">
-        <button onclick="location.href='{% url 'script' %}'" name="_verificar">Verificar</button>  <hr>
+        <button id="_verificar" onclick="location.href='{% url 'script' %}'">Verificar</button>  <hr>
         {% if data %}
         
             {{data | safe}}
