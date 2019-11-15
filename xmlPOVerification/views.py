@@ -3,11 +3,10 @@ import requests
 
 
 def button(request):
-
-    return render(request, 'admin/verificacao/change_form.html')
+    return render(request,'home.html')
 
 def output(request):
     data=requests.get("https://www.google.com/")
     print(data.text)
     data=data.text
-    return render(request,'admin/verificacao/change_form.html',{'data':data})
+    return render(request,'home.html',{'data':data})
