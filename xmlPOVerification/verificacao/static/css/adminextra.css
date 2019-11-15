@@ -18,15 +18,28 @@ div.breadcrumbs {
 a:link, a:visited {
     color: #4c4c4c;
 }
-/* 
-input[name="_continue"] {
+
+.app-verificacao input[name="_continue"] {
     display: none;
 }
 
-input[name="_addanother"] {
+.model-verificação input[name="_addanother"] {
     display: none;
 }
 
-input[name="_save"] {
+.model-verificação input[name="_save"] {
     display: none;
-} */
+} 
+
+input[name="_verificar"] {
+    background: #5a1e82;
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+form .submit-row {
+    float: left;
+    background: #ffffff;
+    border: none;
+    padding: 0px;
+}
