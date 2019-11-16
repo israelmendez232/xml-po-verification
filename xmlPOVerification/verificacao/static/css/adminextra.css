@@ -32,6 +32,7 @@ a:link, a:visited {
 } 
 
 button#_verificar {
+    margin-bottom: 2em;
     background: #5a1e82;
     font-size: 1.2em;
     font-weight: bolder;
@@ -44,9 +45,29 @@ button#_verificar {
     border: none;
 }
 
+button#_verificar:hover {
+    background-color: #b082cf;
+    color: white;
+}
+
 form .submit-row {
-    float: left;
     background: #ffffff;
     border: none;
     padding: 0px;
+}
+
+div#response_verification {
+    display: block;
+    margin-top: 2em;
+    background: #f8f8f8;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    color: black;
+    height: 20em;
+    width: 100%;
+}
+
+p#response_verification_text {
+    padding: 10px;
+    color: #4c4c4c;
 }

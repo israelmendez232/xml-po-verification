@@ -3,11 +3,17 @@
 {% block submit_buttons_bottom %}
     {{ block.super }}
     <div class="submit-row">
-        <button id="_verificar" onclick="location.href='{% url 'script' %}'">Verificar</button>  <hr>
-        {% if data %}
-        
-            {{data | safe}}
+        <button id="_verificar" onclick="location.href='{% url 'script' %}';">Verificar</button> <br> <hr>
+    </div>
 
+    <div>
+        {% if data %}
+            <div id="response_verification">
+                <p id="response_verification_text">
+                    {{data | safe}}
+                </p>
+            </div>
         {% endif %}
     </div>
+
 {% endblock %}
